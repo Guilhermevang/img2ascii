@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>img2ascii</title>
+    <meta name="description" content="img2ascii is a simple tool to convert images to ascii art.">
+    <meta name="keywords" content="img, ascii, art, convert">
+    <meta name="author" content="Guilherme Evangelista">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            border-collapse: collapse;
+            box-sizing: border-box;
+            font-family: 'Courier Prime' !important;
+            line-height: 100% !important;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+        }
+        
+        img,
+        #insert-container {
+            border-radius: 5px;
+            box-shadow: 0 0 30px -15px rgb(0, 0, 0, .25);
+        }
+        
+        img {
+            width: 300px;
+            margin: 50px 0;
+            padding: 5px;
+        }
+
+        #insert-container {
+            max-width: 100%;
+            width: 100%;
+            overflow: auto;
+            margin-bottom: 50px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <img src="./Landscape.jpg" alt="Gato pixelado">
+    <pre id="insert-container"></pre>
+</body>
+</html>
+
+<script type="module">
+    import img2ascii from './src/script.js';
+    
+    // Element to insert the ascii art (should be a pre element for string output)
+    let insert = document.querySelector('#insert-container')
+    
+    img2ascii('./Landscape.jpg', {
+        insert: false, // HTML element to insert the output (in string)
+        width: 300, // The new width (char line length), usually less than the original width
+        color: false, // If should colorize the output (it slows down the process)
+        toCanvas: false, // If should convert the output to a canvas element (in development)
+        fontSize: 10, // The font size of the output when using toCanvas
+        mounted: html => {
+            // Callback when the output is ready, use this or insert, not both
+            insert.appendChild(html)
+        }
+    })
+</script>
