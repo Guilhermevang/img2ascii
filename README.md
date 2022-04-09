@@ -1,4 +1,5 @@
 # img2ascii
-Transforma imagens em artes ASCII.
+- Transforme imagens em artes ASCII.
 
-- Se você tem interesse em contríbuir, fique a vontade
+On Windows, run <code>python -m http.server 8080</code>
+then open your browser and type (http://localhost:8080/)
